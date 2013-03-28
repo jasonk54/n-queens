@@ -89,7 +89,17 @@
     // todo: fill in all these functions - they'll help you!
 
     hasAnyRowConflict: function(){
-      // todo
+      var board = this.get('board');
+      var tempValue = 0;
+
+
+      for (var i=0; i<board.length; i++) {
+        for(var j=0; j<board.length; i++) {
+          if (board[i][j].piece === true ) {
+            console.log('found it');
+          }
+        }
+      }
     },
 
     hasRowConflictAt: function(r){
