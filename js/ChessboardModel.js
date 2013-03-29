@@ -90,44 +90,74 @@
 
     hasAnyRowConflict: function(){
       var board = this.get('board');
-      var tempValue = 0;
       var obj = {};
-
-      for (var i=0; i<board.length; i++) {
-        for(var j=0; j<board.length; j++) {
-          if (board[i][j].piece === true) {
-            tempValue++;
-            obj[i] = tempValue;
-            if (obj[i] > 1) {
+      // Refactor using hasRowConflictAt
+      for (var i = 0; i < board.length; i++) {
+        foundPiece = false;
+        for(var j = 0; j < board.length; j++) {
+          if (board[i][j].piece) {
+            if (foundPiece === false) {
+              foundPiece = true;
+            } else if (foundPiece === true){
               return true;
             }
           }
-        } tempValue = 0;
+          // if (board[i][j].piece) {
+          //   tempValue++;
+          //   obj[i] = tempValue;
+          //   if (obj[i] > 1) {
+          //     return true;
+          //   }
+          // }
+        }
       }
       return false;
     },
 
     hasRowConflictAt: function(r){
-      var tempValue = 0;
-
-      for (var i = 0; i < r.length; i++) {
-        if (r[i]) {
-          tempValue++;
+      var foundPiece = false
+      _.each(r, function(square){
+        if(square.piece){
+          if(foundPiece){
+            return true;
+          } else {
+            foundPiece = true;
+          }
         }
-      }
-      if ( tempValue > 1){
-        return true;
-      }
+      });
       return false;
+      // var foundPiece = false;
+
+      // for (var i = 0; i < r.length; i++) {
+      //   if (r[i].piece && foundPiece === false) {
+      //     foundPiece = true;
+      //   } else if (r[i].piece && foundPiece){
+      //     return true;
+      //   }
     },
 
     hasAnyColConflict: function(){
-      // todo
+      // var board = this.get('board');
+      // var tempValue = 0;
+      // var obj = {};
+      // // Refactor using hasRowConflictAt
 
+      // for (var i=0; i<board.length; i++) {
+      //   for(var j=0; j<board.length; j++) {
+      //     if (board[i][j].piece) {
+      //       tempValue++;
+      //       obj[j] = tempValue;
+      //       if (obj[j] > 1) {
+      //         return true;
+      //       }
+      //     }
+      //   } tempValue = 0;
+      // }
+      // return false;
     },
 
     hasColConflictAt: function(c){
-      // todo
+
     },
 
     hasAnyUpLeftConflict: function(){
