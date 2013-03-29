@@ -90,50 +90,22 @@
 
     hasAnyRowConflict: function(){
       var board = this.get('board');
-      var obj = {};
-      // Refactor using hasRowConflictAt
       for (var i = 0; i < board.length; i++) {
-        foundPiece = false;
-        for(var j = 0; j < board.length; j++) {
-          if (board[i][j].piece) {
-            if (foundPiece === false) {
-              foundPiece = true;
-            } else if (foundPiece === true){
-              return true;
-            }
-          }
-          // if (board[i][j].piece) {
-          //   tempValue++;
-          //   obj[i] = tempValue;
-          //   if (obj[i] > 1) {
-          //     return true;
-          //   }
-          // }
+        if(this.hasRowConflictAt(board[i])){
+          return true;
         }
       }
       return false;
     },
 
     hasRowConflictAt: function(r){
-      var foundPiece = false
+      var foundPiece = 0;
       _.each(r, function(square){
         if(square.piece){
-          if(foundPiece){
-            return true;
-          } else {
-            foundPiece = true;
-          }
+          foundPiece += 1;
         }
       });
-      return false;
-      // var foundPiece = false;
-
-      // for (var i = 0; i < r.length; i++) {
-      //   if (r[i].piece && foundPiece === false) {
-      //     foundPiece = true;
-      //   } else if (r[i].piece && foundPiece){
-      //     return true;
-      //   }
+      return foundPiece === 2 ? true : false;
     },
 
     hasAnyColConflict: function(){
