@@ -109,27 +109,28 @@
     },
 
     hasAnyColConflict: function(){
-      // var board = this.get('board');
-      // var tempValue = 0;
-      // var obj = {};
-      // // Refactor using hasRowConflictAt
-
-      // for (var i=0; i<board.length; i++) {
-      //   for(var j=0; j<board.length; j++) {
-      //     if (board[i][j].piece) {
-      //       tempValue++;
-      //       obj[j] = tempValue;
-      //       if (obj[j] > 1) {
-      //         return true;
-      //       }
-      //     }
-      //   } tempValue = 0;
-      // }
-      // return false;
+      var board = this.get('board');
+      var array = [];
+      for (var col = 0; col < board.length; col++){
+        for (var row = 0; row < board.length; row++){
+          array.push(board[row][col].piece);
+        }
+        if (this.hasColConflictAt(array)) {
+          return true;
+        }
+        array = [];
+      }
+      return false;
     },
 
     hasColConflictAt: function(c){
-
+      var foundPiece = 0;
+      _.each(c, function(square){
+        if (square){
+          foundPiece += 1;
+        }
+      });
+      return foundPiece === 2 ? true : false;
     },
 
     hasAnyUpLeftConflict: function(){
