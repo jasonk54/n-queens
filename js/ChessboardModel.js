@@ -91,23 +91,39 @@
     hasAnyRowConflict: function(){
       var board = this.get('board');
       var tempValue = 0;
-
+      var obj = {};
 
       for (var i=0; i<board.length; i++) {
-        for(var j=0; j<board.length; i++) {
-          if (board[i][j].piece === true ) {
-            console.log('found it');
+        for(var j=0; j<board.length; j++) {
+          if (board[i][j].piece === true) {
+            tempValue++;
+            obj[i] = tempValue;
+            if (obj[i] > 1) {
+              return true;
+            }
           }
-        }
+        } tempValue = 0;
       }
+      return false;
     },
 
     hasRowConflictAt: function(r){
-      // todo
+      var tempValue = 0;
+
+      for (var i = 0; i < r.length; i++) {
+        if (r[i]) {
+          tempValue++;
+        }
+      }
+      if ( tempValue > 1){
+        return true;
+      }
+      return false;
     },
 
     hasAnyColConflict: function(){
       // todo
+
     },
 
     hasColConflictAt: function(c){

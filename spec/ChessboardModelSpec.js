@@ -28,11 +28,11 @@ describe("ChessboardModel", function() {
       [false, false, false, false]
     ]);
     expect(model.hasAnyRowConflict()).toBe(true);
-  //   expect(model.hasAnyColConflict()).toBe(false);
-  //   expect(model.hasAnyUpLeftConflict()).toBe(false);
-  //   expect(model.hasAnyUpRightConflict()).toBe(false);
-  //   expect(model.hasRooksConflict()).toBe(true);
-  //   expect(model.hasQueensConflict()).toBe(true);
+    // expect(model.hasAnyColConflict()).toBe(false);
+    // expect(model.hasAnyUpLeftConflict()).toBe(false);
+    // expect(model.hasAnyUpRightConflict()).toBe(false);
+    // expect(model.hasRooksConflict()).toBe(true);
+    // expect(model.hasQueensConflict()).toBe(true);
   });
 
 //   it("should find column conflicts", function() {
