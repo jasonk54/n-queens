@@ -168,7 +168,31 @@
     },
 
     hasAnyUpRightConflict: function(){
-      // todo
+            var board = this.get('board');
+      var obj = {};
+      var numDiags = (board.length - 1) * 2;
+
+      for (var i = 0; i <= numDiags; i++) {
+        obj[i] = [];
+      }
+      for (var row = 0; row < board.length; row++) {
+        for (var col = 0; col < board.length; col++) {
+          //obj[this.get('n') - c + r - 1].push(board[row][col].piece);
+          obj[this.get('n') - col + row - 1].push(board[row][col].piece);
+        }
+      }
+      for(key in obj){
+        var count = 0;
+        obj[key].forEach(function(value){
+          if(value === true) {
+            count++;
+          }
+        });
+        if(count > 1) {
+          return true;
+        }
+      }
+      return false;
     },
 
     hasUpRightConflictAt: function(upRightIndex){
